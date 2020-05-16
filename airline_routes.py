@@ -15,37 +15,61 @@ routes = [
     ('SFO','SAN'),('SFO','DSM'),('SAN','EYW')
 ]
 #------------------------------------------------------------------------------
+
 data = {}
 for route in routes:
     if route[0] in data:
-        data[route[0]].append(route[1])
+        data[route[0]]['non-stop'].append(route[1])
     else:
-        data[route[0]] = [route[1]]
-routes = data
+        data[route[0]] = {'non-stop': [route[1]]}
+departures = data
+
+for key in departures:
+    for airport in departures[key]['non-stop']:
+        if airport != key and airport in departures:
+            for port in departures[airport]['non-stop']:
+                if port not in departures[key]['non-stop']:
+                    if 'one-stop' in departures[key]:
+                        departures[key]['one-stop'].append(port)
+                    else:
+                        departures[key]['one-stop'] = [port]
 
 
-def travel(depart, arrive):
-    if arrive in routes[depart]:
-        return [depart, arrive]
-    return None
+pprint( departures )
 
-def get_all_routes(depart):
+# data = {}
+# for route in routes:
+#     if route[1] in data:
+#         data[route[1]].append(route[0])
+#     else:
+#         data[route[1]] = [route[0]]
+# arrivals = data
+
+
+# def travel(depart, arrive):
+#     if arrive in departures[depart]:
+#         return [depart, arrive]
     
-    # Starting connection
-    start = []
-    if depart in routes:
-        start = routes[depart]
+#     return [depart, *travel(departures[depart][0])]
+    
+
+# def get_all_routes(depart):
+    
+#     # Starting connection
+#     start = []
+#     if depart in departures:
+#         start = departures[depart]
                 
-    # Reach all airports
-    airports_reached = {}
-    for airport in airports:
-        if depart == airport:
-            continue
+#     # Reach all airports
+#     airports_reached = {}
+#     for airport in airports:
+#         if depart == airport:
+#             continue
         
-        route = travel(depart, airport)
-        airports_reached[airport] = route
+#         route = travel(depart, airport)
+#         airports_reached[airport] = route
 
-    return airports_reached
+#     return airports_reached
 
-pprint(get_all_routes('SFO'))
+# pprint(get_all_routes('SFO'))
 
