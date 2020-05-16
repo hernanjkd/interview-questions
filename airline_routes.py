@@ -1,4 +1,5 @@
 from pprint import pprint
+from time import time
 
 # Given an airport hub, add the fewest missing connections for the plane
 # to be able to reach every other airport. Start: LGA
@@ -16,26 +17,41 @@ routes = [
 ]
 #------------------------------------------------------------------------------
 
-data = {}
-for route in routes:
-    if route[0] in data:
-        data[route[0]]['non-stop'].append(route[1])
-    else:
-        data[route[0]] = {'non-stop': [route[1]]}
-departures = data
 
-for key in departures:
-    for airport in departures[key]['non-stop']:
-        if airport != key and airport in departures:
-            for port in departures[airport]['non-stop']:
-                if port not in departures[key]['non-stop']:
-                    if 'one-stop' in departures[key]:
-                        departures[key]['one-stop'].append(port)
-                    else:
-                        departures[key]['one-stop'] = [port]
+# Solution: find all the airports that don't have any incoming flights, those
+# are the connections you need to add because everything else is connected already
+
+arrivals = [route[1] for route in routes]
+need_connection = []
+for airport in airports:
+    if airport not in arrivals:
+        need_connection.append(airport)
 
 
-pprint( departures )
+
+
+
+# data = {}
+# for route in routes:
+#     if route[0] in data:
+#         data[route[0]]['non-stop'].append(route[1])
+#     else:
+#         data[route[0]] = {'non-stop': [route[1]]}
+# departures = data
+
+# for key in departures:
+#     for airport in departures[key]['non-stop']:
+#         if airport in departures:
+#             for port in departures[airport]['non-stop']:
+#                 if port != key and port not in departures[key]['non-stop']:
+#                     if 'one-stop' in departures[key]:
+#                         departures[key]['one-stop'].append(port)
+#                     else:
+#                         departures[key]['one-stop'] = [port]
+
+# pprint( departures )
+
+
 
 # data = {}
 # for route in routes:
