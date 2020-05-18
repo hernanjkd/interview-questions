@@ -28,45 +28,58 @@ for airport in airports:
         need_connection.append(airport)
 
 #------------------------------------------------------------------------------
+        
 
-class List(list):
-    def __init__(self, lst):
-        self.lst = [lst]
-    def norepeat(self, item):
-        for x in self.lst:
-            # if isinstance(x, list):
-            #     repeat = x.norepeat(item)
-            #     if repeat:
-            #         return repeat
+def travel(route):
+    new_connections = []
+    print('-1',route[-1])
+    for airport in route[-1]:
+        print('airport',airport)
+        if airport in initial:
+            print('airport in initial',airport)
+            for port in initial[airport]:
+                print('port',port)
+                if norepeat(port, route):
+                    new_connections.append(port)
+    return new_connections if new_connections else None
+
+def norepeat(item, lst):
+    for x in lst:
+        if isinstance(x, list):
+            for y in x:
+                if y == item:
+                    return False
+        else:
             if x == item:
-                return True
-            
+                return False
+    return True
+
+
 
 x = {}
 for route in routes:
     if route[0] in x:
         x[route[0]].append(route[1])
     else:
-        x[route[0]] = List(route[1])
+        x[route[0]] = [route[1]]
 initial = x
 
-print(x)
+# print([x['CDG']])
+# print(travel(['SFO',x['SFO']]))
 
-def travel(route):
-    new_connections = []
-    for airport in route[-1]:
-        if airport in directs:
-            for port in initial[airport]:
-                if norepeat(port, route):
-                    new_connections.append(port)
-                    
+routes = {}
+for key in initial:
+    routes[key] = [key, initial[key]]
+    for airport in initial[key]:
+        result = travel(routes[key])
+        while result is not None:
+            routes[key].append(result)
+            result = travel(routes[key])
 
-def norepeat(item, lst):
-    for x in lst:
-        for y in x:
-            if y == item:
-                return True
-    return False
+pprint(routes)
+
+
+
 
 
 
