@@ -27,6 +27,46 @@ for airport in airports:
     if airport not in arrivals:
         need_connection.append(airport)
 
+#------------------------------------------------------------------------------
+
+class List(list):
+    def __init__(self, lst):
+        self.lst = [lst]
+    def norepeat(self, item):
+        for x in self.lst:
+            # if isinstance(x, list):
+            #     repeat = x.norepeat(item)
+            #     if repeat:
+            #         return repeat
+            if x == item:
+                return True
+            
+
+x = {}
+for route in routes:
+    if route[0] in x:
+        x[route[0]].append(route[1])
+    else:
+        x[route[0]] = List(route[1])
+initial = x
+
+print(x)
+
+def travel(route):
+    new_connections = []
+    for airport in route[-1]:
+        if airport in directs:
+            for port in initial[airport]:
+                if norepeat(port, route):
+                    new_connections.append(port)
+                    
+
+def norepeat(item, lst):
+    for x in lst:
+        for y in x:
+            if y == item:
+                return True
+    return False
 
 
 
