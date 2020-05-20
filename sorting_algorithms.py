@@ -6,7 +6,7 @@ lst = [randrange(length) for x in range(length)]
 
 # BUBBLE SORT
 
-def bubblesort(lst):
+def bubble_sort(lst):
     n = len(lst)
     for i in range(n):
         already_sorted = True
@@ -16,9 +16,18 @@ def bubblesort(lst):
                 already_sorted = False
         if already_sorted:
             break
-
     return lst
 
-# print(bubblesort(lst))
+# print(bubble_sort(lst))
 
-for x in range(5): print(x)
+def insertion_sort(lst):
+    for i in range(1, len(lst)):
+        item = lst[i]
+        j = i-1
+        while j >= 0 and lst[j] > item:
+            lst[j+1] = lst[j]
+            j -= 1
+        lst[j+1] = item
+    return lst
+
+print(insertion_sort(lst))
