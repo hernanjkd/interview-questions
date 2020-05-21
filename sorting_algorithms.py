@@ -14,12 +14,13 @@ from random import randrange, randint
 # merge 0.0010808634757995606
 
 # lst length 10,000
-# quick 0.06157848358154297
-# inser 0.1027791714668274
-# merge 0.16664746761322022
-# bubbl 0.23856120586395263
+# quick 0.06294780015945435
+# times 0.1401864743232727
+# merge 0.16730313062667845
+# inser 9.771325569152832
+# bubbl 23.391096591949463
 
-length = 100
+length = 10000
 lst = [randrange(length) for x in range(length)]
 
 
@@ -93,8 +94,7 @@ def mergesort(lst):
     midpoint = len(lst)//2
     return merge(
         left = mergesort(lst[:midpoint]),
-        right= mergesort(lst[midpoint:])
-    )
+        right= mergesort(lst[midpoint:]) )
 
 
 
@@ -118,8 +118,43 @@ def quicksort(lst):
 
 
 
+# TIMESORT
+# The default Python sorting algorithm. It's the most efficient because it
+# uses the best of both worlds, insertion for smaller sections and it merges
+# them
+def insertion(lst, left=0, right=None):
+    if right is None:
+        right = len(lst)-1
+    for i in range(left+1, right+1):
+        x = lst[i]
+        j = i-1
+        while j >= left and lst[j] > x:
+            lst[j+1] = lst[j]
+            j -= 1
+        lst[j+1] = x
+    return lst
 
-def timesort(func, lst):
+def timesort(lst):
+    min_run = 32
+    n = len(lst)
+    for i in range(0, n, min_run):
+        insertion(lst, i, min((i+min_run-1), n-1))
+    size = min_run
+    while size < n:
+        for start in range(0, n, size*2):
+            midpoint = start + size - 1
+            end = min((start+size*2-1), (n-1))
+            merged_lst = merge(
+                left = lst[start: midpoint+1],
+                right = lst[midpoint+1: end+1] )
+            lst[start: start+len(merged_lst)] = merged_lst
+        size *= 2
+    return lst
+
+
+
+
+def time_algorithm(func, lst):
     times = []
     for x in range(100):
         arr = [*lst]
@@ -128,7 +163,8 @@ def timesort(func, lst):
         times.append(time()-t)
     return sum(times)/100
 
-print('bubbl',timesort(bubblesort, lst))
-print('inser',timesort(insertionsort, lst))
-print('merge',timesort(mergesort, lst))
-print('quick',timesort(quicksort, lst))
+print('bubbl',time_algorithm(bubblesort, lst))
+print('inser',time_algorithm(insertionsort, lst))
+print('merge',time_algorithm(mergesort, lst))
+print('quick',time_algorithm(quicksort, lst))
+print('times',time_algorithm(timesort, lst))
