@@ -68,45 +68,12 @@ def merge(left, right):
             break
     return result
 
-
-length = 100000
-lst1 = [x for x in range(length)]
-lst2 = [x for x in range(length)]
-
-times = []
-for x in range(100):
-    t = time()
-    lst1 + lst2
-    times.append(time()-t)
-print('1#', sum(times)/100)
-
-times = []
-for x in range(100):
-    t = time()
-    [*lst1, *lst2]
-    times.append(time()-t)
-print('2#', sum(times)/100)
- 
-times = []
-for x in range(100):
-    t = time()
-    [y for x in [lst1,lst2] for y in x]
-    times.append(time()-t)
-print('3#', sum(times)/100)
- 
-times = []
-for x in range(100):
-    new = [*lst1]
-    t = time()
-    new.extend(lst2)
-    times.append(time()-t)
-print('4#', sum(times)/100)
-
-
-# k = [x for x in range(100000)]
-# t = time()
-# j = [x for x in k]
-# print(time()-t)
-# t = time()
-# j = [*k]
-# print(time()-t)
+def merge_sort(lst):
+    if len(lst) < 2:
+        return lst
+    midpoint = len(lst)//2
+    return merge(
+        left = merge_sort(lst[:midpoint]),
+        right= merge_sort(lst[midpoint:])
+    )
+print(merge_sort(lst))
