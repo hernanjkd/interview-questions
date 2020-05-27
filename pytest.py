@@ -1,16 +1,15 @@
-import pytest, io, sys, json
 
-@pytest.mark.it('Sum all three input numbers and print on the console the result')
-def test_add_variables(capsys):
 
-    fake_input = [2,3,4] #fake input
-    with mock.patch('builtins.input', lambda x: fake_input.pop()):
-      captured = capsys.readouterr()
-      assert captured.out == "9\n"
+#Complete the function to calculate how many hours and minutes are passed since midnight.
+def hours_minutes(secs):
+  
+  return secs//60//24, secs//60
 
-# print('file', __file__)
-# print('abspath', os.path.abspath(__file__))
-# print('dirname', os.path.dirname(os.path.abspath(__file__)))
+
+
+
+#Invoke the funtion and pass any interger as its argument.
+print(hours_minutes(3900))
 
 
 
