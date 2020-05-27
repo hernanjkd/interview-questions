@@ -1,17 +1,13 @@
 
 
-#Complete the function to calculate how many hours and minutes are passed since midnight.
-def hours_minutes(secs):
-  
-  return secs//60//24, secs//60
+#Complete the funtion to compute how many seconds passed between the two timestamp.
+def two_timestamp(hr1,min1,sec1,hr2,min2,sec2):
+    
+    return hr2*60*60 + min2*60 + sec2 - hr1*60*60 + min1*60 + sec1
 
 
-
-
-#Invoke the funtion and pass any interger as its argument.
-print(hours_minutes(3900))
-
-
+#Invoke the fuction and pass two timestamps(6 intergers) as its argument.
+print(two_timestamp(1,1,1,2,2,2))
 
 
 
