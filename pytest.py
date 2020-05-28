@@ -51,3 +51,30 @@ def test_variable_exists(app):
         raise AttributeError('The var "myVariable" should exist on app.py')
 
 
+
+# Testing a print (stdout) in the entire app.py
+@pytest.mark.it('3. The printed value on the console should be "red"')
+def test_for_file_output(capsys, app):
+    app()
+    captured = capsys.readouterr()
+    assert "red!\n" == captured.out
+
+
+
+# Testing console output (stdout) for just one function
+@pytest.mark.it('The console should output "Hello" inside the function printHello ')
+def test_for_file_output(capsys, app):
+    app.printHello()
+    captured = capsys.readouterr()
+    assert captured.out == "Hello\n"
+
+
+
+# Testing stdin (using input function) in Python
+@pytest.mark.it('Sum all three input numbers and print on the console the result')
+def test_add_variables(capsys):
+
+    fake_input = [2,3,4] #fake input
+    with mock.patch('builtins.input', lambda x: fake_input.pop()):
+      captured = capsys.readouterr()
+      assert captured.out == "9\n"
