@@ -29,26 +29,7 @@ def test_variable_exists(app):
     except AttributeError:
         raise AttributeError('The var "myVariable" should exist on app.py')
 
-# app.py
-def full_name(first, last):
-    return first +' '+ last
 
-# test.py
-import pytest
-@pytest.mark.it('Your func needs to return the full name')
-def test_full_name():
-    from app import full_name
-    assert full_name('Bob', 'Dylan') == 'Bob Dylan'
-
-
-
-# Testing function or variable value
-@pytest.mark.it('You should create a var named myVariable w val "hello"')
-def test_variable_exists(app):
-    try:
-        assert app.myVariable == 'hello'
-    except AttributeError:
-        raise AttributeError('The var "myVariable" should exist on app.py')
 
 
 
