@@ -78,3 +78,4 @@ def test_add_variables(capsys):
     with mock.patch('builtins.input', lambda x: fake_input.pop()):
       captured = capsys.readouterr()
       assert captured.out == "9\n"
+
