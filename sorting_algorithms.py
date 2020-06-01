@@ -53,14 +53,7 @@ def selectionsort(lst):
             if lst[j] < lst[min]:
                 min = j
         if min != i:
-            print('i',lst[i])
-            print('min',lst[min])
-            print('lst',lst)
             lst[i], lst[min] = lst[min], lst[i]
-            print('i',lst[i])
-            print('min',lst[min])
-            print('lst',lst)
-            print('')
     return lst
 
 
