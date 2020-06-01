@@ -20,12 +20,12 @@ from random import randrange, randint
 # inser 9.771325569152832
 # bubbl 23.391096591949463
 
-length = 10000
+length = 10
 lst = [randrange(length) for x in range(length)]
 
 
 # BUBBLE SORT (time complexity: quadratic, linear)
-# Time complexity is linear if when it goes thru it it's already sorted and the
+# Time complexity is linear when it goes thru it and it's already sorted and the
 # already_sorted flag kicks in.
 # Takes the largest elements to the right on every iteration, stopping one item
 # sooner every time
@@ -39,6 +39,28 @@ def bubblesort(lst):
                 already_sorted = False
         if already_sorted:
             break
+    return lst
+
+
+
+# SELECTION SORT (time complexity: quadratic)
+def selectionsort(lst):
+    n = len(lst)
+    min = None
+    for i in range(n):
+        min = i
+        for j in range(i+1,n):
+            if lst[j] < lst[min]:
+                min = j
+        if min != i:
+            print('i',lst[i])
+            print('min',lst[min])
+            print('lst',lst)
+            lst[i], lst[min] = lst[min], lst[i]
+            print('i',lst[i])
+            print('min',lst[min])
+            print('lst',lst)
+            print('')
     return lst
 
 
@@ -163,8 +185,10 @@ def time_algorithm(func, lst):
         times.append(time()-t)
     return sum(times)/100
 
-print('bubbl',time_algorithm(bubblesort, lst))
-print('inser',time_algorithm(insertionsort, lst))
-print('merge',time_algorithm(mergesort, lst))
-print('quick',time_algorithm(quicksort, lst))
-print('times',time_algorithm(timesort, lst))
+# print('bubbl',time_algorithm(bubblesort, lst))
+# print('inser',time_algorithm(insertionsort, lst))
+# print('merge',time_algorithm(mergesort, lst))
+# print('quick',time_algorithm(quicksort, lst))
+# print('times',time_algorithm(timesort, lst))
+
+print( selectionsort(lst) )
