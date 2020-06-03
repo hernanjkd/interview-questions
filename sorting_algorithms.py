@@ -82,7 +82,26 @@ def insertionsort(lst):
 # slower than bubble and insertion for small lists. Takes up too much mem.
 # Halves the list until there's only one item, then merges all the lists.
 def merge(left, right):
-    
+    if len(left) == 0:
+        return right
+    if len(right) == 0:
+        return left
+    result = []
+    ileft = iright = 0
+    while len(result) < len(left) + len(right):
+        if left[ileft] <= right[iright]:
+            result.append(left[ileft])
+            ileft += 1
+        else:
+            result.append(right[iright])
+            iright += 1
+        if iright == len(right):
+            result += left[ileft:]
+            break
+        if ileft == len(left):
+            result += right[iright:]
+            break
+    return result
 
 def mergesort(lst):
     if len(lst) < 2:
