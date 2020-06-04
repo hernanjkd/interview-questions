@@ -20,11 +20,12 @@ def issorted(lst):
     return True
 
 def test_sort(func):
-    lst = [randrange(3) for x in range(3)]
+    length = 50
+    lst = [randrange(length) for x in range(length)]
     while issorted(lst):
-        print(lst)
-        lst = [randrange(3) for x in range(3)]
+        lst = [randrange(length) for x in range(length)]
     copylst = [*lst]
     sortedlist = func(lst)
+    assert issorted(sortedlist), 'the list is not sorted'
 
-test_sort()
+test_sort(bubblesort)
