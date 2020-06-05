@@ -18,6 +18,14 @@ def test_sort(func):
         f'{func.__name__} [{",".join([str(x) for x in sortedlst])}]'
 
 
+def mergesort(lst):
+    if len(lst) < 2:
+        return lst
+    midpoint = len(lst)//2
+    return merge(
+        left = mergesort(lst[:midpoint]),
+        right= mergesort(lst[midpoint:]) )
+
 
 def insertionsort(lst):
     for i in range(1, len(lst)):
