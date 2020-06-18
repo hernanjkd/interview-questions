@@ -14,9 +14,8 @@ def remove_duplicates(lst):
 
 # How do you reverse an array in place?
 def reverse(lst):
-    length = len(lst)
-    for x in range(3):
-        lst.append( lst.pop(0) )
+    for i in range( len(lst) / 2 ):
+        lst[i], lst[-i] = lst[-i], lst[i]
     return lst
 
 print( reverse(lst) )
