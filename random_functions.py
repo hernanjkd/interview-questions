@@ -26,4 +26,4 @@ def find_max_min(lst):
         'smallest': min(lst),
         'largest': max(lst)
     }
-print( find_max_min(lst) )
+# print( find_max_min(lst) )
