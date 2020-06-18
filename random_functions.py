@@ -10,4 +10,15 @@ def remove_duplicates(lst):
             track.append(e)
     return lst
 
-print( remove_duplicates(lst) )
+# print( remove_duplicates(lst) )
+
+# How do you reverse an array in place?
+def reverse(lst):
+    length = len(lst)
+    for x in range(3):
+        lst.append( lst.pop(0) )
+    return lst
+
+print( reverse(lst) )
+# lst.append(lst.pop(0))
+# print(lst)
