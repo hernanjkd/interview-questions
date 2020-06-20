@@ -32,8 +32,13 @@ def find_max_min(lst):
 # Find first non repeating char
 def nonrepeating(string):
     mem = {}
-    for char in string:
+    for i, char in enumerate(string):
         if char not in mem:
-            
+            mem[char] = i
+        else:
+            del mem[char]
+    
+    
+    
 
 nonrepeating('aaabbccdddd')
