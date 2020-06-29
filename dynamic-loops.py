@@ -2,8 +2,6 @@ salute = ['Hi','Hello']
 name = [' John, ',' Tim, ']
 question = ['how are you?','how you been?']
 
-
-
 lst = [salute, name, question]
 
 
@@ -11,7 +9,7 @@ def loop(lst, vars=''):
     if lst == []:
         print(vars)
         return
-        
+
     copylst = [*lst]
     for x in copylst.pop(0):
         loop(copylst, vars+x)
