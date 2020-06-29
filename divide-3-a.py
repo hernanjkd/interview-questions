@@ -1,3 +1,31 @@
+'''
+You are given a String S consisting of letters 'a' and 'b'. You want to split
+it into three separate non empty parts. The lengths of the parts can differ
+from one another
+
+In how many ways can you split S into three parts, such that each part contains
+the same number of letters 'a'?
+
+Write a function:
+    
+    def solution(S)
+
+that, given a string S of length N, return the number of possible ways of
+splitting S as described above.
+
+Examples:
+
+1. "babaa" the function should return 2. The possible splits are:
+"ba ba a" and "bab a a"
+
+2. "ababa" the function should return 4. The possible splits are:
+"a ba ba", "a bab a", "ab a ba" and "ab ab a"
+
+3. "aba" the function should return 0.
+
+4. "bbbbb" the function should return 6. The possible splits are:
+"b b bbb", "b bb bb", "b bbb b", "bb b bb" and "bbb b b"
+'''
 
 def solution(S):
     N = len(S)
