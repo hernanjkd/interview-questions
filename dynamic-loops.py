@@ -16,7 +16,7 @@ def loop(lst, vars=''):
 
 loop(lst)
 
-# for x in lst[0]:
-#     for y in lst[1]:
-#         for z in lst[2]:
-#             print(x+y+z)
+for x in lst[0]:
+    for y in lst[1]:
+        for z in lst[2]:
+            print(x+y+z)
